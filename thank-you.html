@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thank You — Your Ebook Is Ready</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<style>
+  .ty {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(900px 480px at 85% -10%, rgba(14,124,123,0.10), transparent 60%),
+      radial-gradient(700px 420px at -10% 20%, rgba(201,152,42,0.10), transparent 55%),
+      var(--paper);
+    padding: 32px 20px;
+  }
+  .ty__card {
+    max-width: 520px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .ty__emoji { font-size: 40px; margin-bottom: 8px; }
+  .ty__title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--navy-2);
+    margin: 0 0 6px;
+  }
+  .ty__kicker { font-size: 16px; color: var(--teal); font-weight: 600; margin: 0 0 24px; }
+  .ty__msg { font-size: 15.5px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 28px; }
+  .ty__product {
+    background: var(--paper-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  .ty__product-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+  }
+  .ty__product-name { font-weight: 700; font-size: 16px; color: var(--navy-2); margin: 0; }
+  .ty__note { font-size: 13px; color: var(--ink-soft); margin-top: 22px; }
+  .ty__status { font-size: 13.5px; color: var(--ink-soft); margin-top: 14px; }
+</style>
+</head>
+<body>
+
+<div class="ty">
+  <div class="ty__card">
+    <div class="ty__emoji">🎉</div>
+    <h1 class="ty__title">Thank You!</h1>
+    <p class="ty__kicker">Your ebook is ready.</p>
+    <p class="ty__msg">Thank you for your purchase. Your payment has been successfully received.</p>
+
+    <div class="ty__product">
+      <p class="ty__product-label">Your purchase</p>
+      <p class="ty__product-name" id="product-name">100 AI Tools That Can Save You 10 Hours Every Week</p>
+    </div>
+
+    <a href="downloads/100-ai-tools-ebook.pdf" download="100-AI-Tools-That-Can-Save-You-10-Hours-Every-Week.pdf" id="download-btn" class="btn btn--primary btn--lg btn--block">Download Your Ebook (PDF)</a>
+
+    <p class="ty__note">You can come back to this page anytime to download your ebook again.</p>
+    <p class="ty__status">Need help? <a href="mailto:support@yourdomain.com" id="ty-support-link" style="color:var(--teal); text-decoration:none;">Contact support</a></p>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // The download button links directly to the ebook PDF shipped with
+    // this site (frontend/downloads/100-ai-tools-ebook.pdf), so clicking
+    // it downloads the file immediately — no server round-trip needed.
+    //
+    // NOTE: since checkout now happens on Razorpay's hosted Payment Link
+    // (see README, Section 1) rather than through this project's optional
+    // backend, this page does not verify payment itself — it relies on
+    // only paying customers reaching this URL (e.g. via the Payment
+    // Link's redirect setting in the Razorpay Dashboard). If you need the
+    // download to be gated behind a verified payment, re-enable the
+    // optional backend + signed download tokens described in the README.
+    const btn = document.getElementById("download-btn");
+    btn.addEventListener("click", function () {
+      try {
+        if (window.gtag) window.gtag("event", "download");
+        if (window.fbq) window.fbq("track", "Lead");
+      } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
